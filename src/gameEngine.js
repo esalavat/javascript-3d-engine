@@ -186,6 +186,17 @@ class GameEngine {
         return matrixRotateX;
     }
 
+    rotateYMatrix(theta) {
+        let matrixRotateY = new Matrix4x4();
+        matrixRotateY.m[0][0] = Math.sin(theta) * -1;
+        matrixRotateY.m[1][0] = Math.cos(theta);
+        matrixRotateY.m[0][2] = Math.cos(theta);
+        matrixRotateY.m[2][2] = Math.cos(theta);
+        matrixRotateY.m[3][3] = 1;
+        matrixRotateY.m[2][1] = 1;
+        return matrixRotateY;
+    }
+
     rotateZMatrix(theta) {
         let matrixRotateZ = new Matrix4x4();
         matrixRotateZ.m[0][0] = Math.cos(theta);
@@ -220,9 +231,24 @@ class GameEngine {
             //     [0,0,1,0],
             //     [0,0,0,1]
             // ];
+            let matrixRotateX = this.rotateXMatrix(theta * .4);
+            // matrixRotateX.m = [
+            //     [1,0,0,0],
+            //     [0,1,0,0],
+            //     [0,0,1,0],
+            //     [0,0,0,1]
+            // ];
+            let matrixRotateY = this.rotateYMatrix(theta * .6);
+            matrixRotateY.m = [
+                [1,0,0,0],
+                [0,1,0,0],
+                [0,0,1,0],
+                [0,0,0,1]
+            ];
+            
 
-            let matrixRotateX = this.rotateXMatrix(theta);
             let matrixRotate = this.multiply4x4Matricies(matrixRotateZ, matrixRotateX);
+            matrixRotate = this.multiply4x4Matricies(matrixRotate, matrixRotateY);
             //let matrixRotate = matrixRotateX;
 
             for(let tri of mesh.tris) {
