@@ -1,1 +1,7 @@
-This is the readme
+# 3d Software Engine written in Javascript
+
+## Setup
+
+1. npm install
+2. npm start
+

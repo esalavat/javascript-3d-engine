@@ -1,7 +1,7 @@
 import { GameEngine, Vertex3d, Triangle, Mesh } from "./gameEngine.js";
 
 $(function() {
-    let meshUrl = '/assets/Salavatcioglu2.obj';
+    let meshUrl = '/assets/cube.obj';
 
     window.Game = {
         controls: {
